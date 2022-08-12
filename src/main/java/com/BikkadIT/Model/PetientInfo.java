@@ -24,7 +24,6 @@ public class PetientInfo {
 	
 	private int page;
 	
-	
 
 	public int getPid() {
 		return pid;
