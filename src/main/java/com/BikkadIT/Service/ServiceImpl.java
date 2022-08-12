@@ -30,9 +30,26 @@ public class ServiceImpl {
 		String hql="From PetientInfo";
 		Query query = session.createQuery(hql);
 		List list = query.getResultList();
-		return list;
-		
-		
+		return list;	
 	}
 	
-}
+	public PetientInfo getparticulardata(int id){
+		
+		Session session = sf.openSession();
+		session.beginTransaction();
+		String hql="From PetientInfo where id=:id";
+		Query query = session.createQuery(hql);
+		query.setParameter("id", id);
+		Object result = query.getSingleResult();
+		session.getTransaction().commit();
+		
+		return (PetientInfo) result;
+	}
+	public static void main(String[] args) {
+		
+	
+	int a=20;
+	int b=10;
+	System.out.println(a+b);
+	
+}}

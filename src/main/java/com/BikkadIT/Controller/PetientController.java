@@ -34,5 +34,12 @@ public class PetientController {
 		return new ResponseEntity<List<PetientInfo>>(list, HttpStatus.OK);
 	}
 	
+	@GetMapping(value="/getsingleData/{id}", produces="application/json")
+	public ResponseEntity<PetientInfo>getPartiData(@PathVariable int id){
+		PetientInfo getparticulardata = serviceImpl.getparticulardata(id);
+		return new  ResponseEntity<PetientInfo>(getparticulardata,HttpStatus.OK);
+		
+	}
+	
 	
 }
