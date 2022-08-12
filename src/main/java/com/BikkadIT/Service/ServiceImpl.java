@@ -23,6 +23,16 @@ public class ServiceImpl {
 		
 	}
 	
+	public List<PetientInfo> saveMultiple(List<PetientInfo> petientInfos){
+		Session session = sf.openSession();
+		session.beginTransaction();
+		for(PetientInfo pi:petientInfos) {
+			session.save(pi);
+		}
+		session.getTransaction().commit();
+		return petientInfos;
+	}
+	
 	public List<PetientInfo> getall (){
 		
 		Session session = sf.openSession();
@@ -45,11 +55,7 @@ public class ServiceImpl {
 		
 		return (PetientInfo) result;
 	}
-	public static void main(String[] args) {
-		
+
 	
-	int a=20;
-	int b=10;
-	System.out.println(a+b);
 	
-}}
+}

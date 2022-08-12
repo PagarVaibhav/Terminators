@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.BikkadIT.Model.PetientInfo;
 import com.BikkadIT.Service.ServiceImpl;
 
@@ -27,7 +27,16 @@ public class PetientController {
 		}
 		return new ResponseEntity<String>("Data Not Saved", HttpStatus.BAD_REQUEST);
 	}
-	@GetMapping(value="/getData", produces="application/json")
+	
+	@PostMapping(value="/addMultiple" , consumes = "application/json")
+	public ResponseEntity<List<PetientInfo>> saveMultiData(@RequestBody List<PetientInfo> petientInfos){
+		List<PetientInfo> saveMultiple = serviceImpl.saveMultiple(petientInfos);
+		
+		return new ResponseEntity<List<PetientInfo>>(saveMultiple , HttpStatus.CREATED);
+		}
+	
+	
+	@GetMapping(value="/getAllData", produces="application/json")
 	public ResponseEntity<List<PetientInfo>> getAllData (){
 		List<PetientInfo> list = serviceImpl.getall();
 		
